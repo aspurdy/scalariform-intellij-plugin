@@ -39,7 +39,7 @@
         <action id="ScalariformIdea.com.thesamet.intellij.ScalariformFormatAction" class="com.thesamet.intellij.ScalariformFormatAction"
                 text="Format with _Scalariform" description="Formats the current file with Scalariform">
             <add-to-group group-id="CodeFormatGroup" anchor="first"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="meta alt S"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="Alt Shift F"/>
         </action>
     </actions>
 
