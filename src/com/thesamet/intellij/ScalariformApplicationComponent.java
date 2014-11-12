@@ -17,6 +17,7 @@ import javax.swing.*;
 )})
 public class ScalariformApplicationComponent implements Configurable, ApplicationComponent, PersistentStateComponent<ScalariformApplicationComponent> {
     private boolean alignParameters = false;
+    private boolean alignArguments = false;
     private boolean alignSingleLineCase = false;
     private boolean compactControlReadability = false;
     private boolean compactStringConcatenation = false;
@@ -25,7 +26,6 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
     private boolean indentPackageBlocks = true;
     private boolean indentWithTabs = false;
     private boolean multilineScalaDocCommentsStartOnFirstLine = false;
-    private boolean preserveDanglineCloseParenthesis = false;
     private boolean placeScalaDocAsteriskBeneathSecondAsterisk = false;
     private boolean preserveSpaceBeforeArguments = false;
     private boolean rewriteArrowSymbols = false;
@@ -36,6 +36,7 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
     private Integer indentSpaces = 2;
     private boolean indentLocalDefs;
     private boolean spaceInsideBrackets;
+    private boolean spacesAroundMultiImports = true;
 
     public ScalariformApplicationComponent() {
     }
@@ -59,6 +60,14 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
 
     public void setAlignParameters(final boolean alignParameters) {
         this.alignParameters = alignParameters;
+    }
+
+    public boolean isAlignArguments() {
+        return alignArguments;
+    }
+
+    public void setAlignArguments(final boolean alignArguments) {
+        this.alignArguments = alignArguments;
     }
 
     public boolean isAlignSingleLineCase() {
@@ -125,14 +134,6 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
         this.multilineScalaDocCommentsStartOnFirstLine = multilineScalaDocCommentsStartOnFirstLine;
     }
 
-    public boolean isPreserveDanglineCloseParenthesis() {
-        return preserveDanglineCloseParenthesis;
-    }
-
-    public void setPreserveDanglineCloseParenthesis(final boolean preserveDanglineCloseParenthesis) {
-        this.preserveDanglineCloseParenthesis = preserveDanglineCloseParenthesis;
-    }
-
     public boolean isPlaceScalaDocAsteriskBeneathSecondAsterisk() {
         return placeScalaDocAsteriskBeneathSecondAsterisk;
     }
@@ -195,6 +196,14 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
 
     public void setIndentSpaces(final Integer indentSpaces) {
         this.indentSpaces = indentSpaces;
+    }
+
+    public boolean isSpacesAroundMultiImports() {
+        return spacesAroundMultiImports;
+    }
+
+    public void setSpacesAroundMultiImports(final boolean spacesAroundMultiImports) {
+        this.spacesAroundMultiImports = spacesAroundMultiImports;
     }
 
     // Configurable

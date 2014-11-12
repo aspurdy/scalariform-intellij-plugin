@@ -53,13 +53,13 @@ class ScalariformFormatAction extends AnAction {
       .setPreference(CompactStringConcatenation, component.isCompactStringConcatenation)
       .setPreference(PreserveSpaceBeforeArguments, component.isPreserveSpaceBeforeArguments)
       .setPreference(AlignParameters, component.isAlignParameters)
+      .setPreference(AlignArguments, component.isAlignArguments)
       .setPreference(DoubleIndentClassDeclaration, component.isDoubleIndentClassDeclaration)
       .setPreference(FormatXml, component.isFormatXML)
       .setPreference(IndentPackageBlocks, component.isIndentPackageBlocks)
       .setPreference(AlignSingleLineCaseStatements, component.isAlignSingleLineCase)
       .setPreference(MaxArrowIndent, component.getAlignSingleLineCaseStatementsMaxArrowIndent.toInt)
       .setPreference(IndentLocalDefs, component.isIndentLocalDefs)
-      .setPreference(PreserveDanglingCloseParenthesis, component.isPreserveDanglineCloseParenthesis)
       .setPreference(SpaceInsideParentheses, component.isSpaceInsideParenthesis)
       .setPreference(SpaceInsideBrackets, component.isSpaceInsideBrackets)
       .setPreference(SpacesWithinPatternBinders, component.isSpacesWithinPatternBinders)
@@ -67,6 +67,7 @@ class ScalariformFormatAction extends AnAction {
       .setPreference(IndentWithTabs, component.isIndentWithTabs)
       .setPreference(CompactControlReadability, component.isCompactControlReadability)
       .setPreference(PlaceScaladocAsterisksBeneathSecondAsterisk, component.isPlaceScalaDocAsteriskBeneathSecondAsterisk)
+      .setPreference(SpacesAroundMultiImports, component.isSpacesAroundMultiImports)
   }
 
 }
