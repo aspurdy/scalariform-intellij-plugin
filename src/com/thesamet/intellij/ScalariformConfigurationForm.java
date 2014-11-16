@@ -28,6 +28,7 @@ public class ScalariformConfigurationForm {
     private JTextField indentSpaces;
     private JTextField maxArrowIndent;
     private JCheckBox spacesAroundMultiImportsCheckBox;
+    private JCheckBox autoFormatOnSaveCheckBox;
 
     public JPanel getRootComponent() {
         return rootComponent;
@@ -55,6 +56,7 @@ public class ScalariformConfigurationForm {
         indentLocalDefsCheckBox.setSelected(data.isIndentLocalDefs());
         spaceInsideBracketsCheckBox.setSelected(data.isSpaceInsideBrackets());
         spacesAroundMultiImportsCheckBox.setSelected(data.isSpacesAroundMultiImports());
+        autoFormatOnSaveCheckBox.setSelected(data.isAutoFormatOnSave());
     }
 
     public void getData(ScalariformApplicationComponent data) {
@@ -85,6 +87,7 @@ public class ScalariformConfigurationForm {
         data.setIndentLocalDefs(indentLocalDefsCheckBox.isSelected());
         data.setSpaceInsideBrackets(spaceInsideBracketsCheckBox.isSelected());
         data.setSpacesAroundMultiImports(spacesAroundMultiImportsCheckBox.isSelected());
+        data.setAutoFormatOnSave(autoFormatOnSaveCheckBox.isSelected());
     }
 
     public boolean isModified(ScalariformApplicationComponent data) {
@@ -116,6 +119,7 @@ public class ScalariformConfigurationForm {
         if (indentLocalDefsCheckBox.isSelected() != data.isIndentLocalDefs()) return true;
         if (spaceInsideBracketsCheckBox.isSelected() != data.isSpaceInsideBrackets()) return true;
         if (spacesAroundMultiImportsCheckBox.isSelected() != data.isSpacesAroundMultiImports()) return true;
+        if (autoFormatOnSaveCheckBox.isSelected() != data.isAutoFormatOnSave()) return true;
         return false;
     }
 }

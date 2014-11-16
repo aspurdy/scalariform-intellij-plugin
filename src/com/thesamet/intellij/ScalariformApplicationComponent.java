@@ -16,27 +16,28 @@ import javax.swing.*;
 @State(name = "ScalariformSettings", storages = {@Storage(id = "other", file = StoragePathMacros.APP_CONFIG + "/other.xml"
 )})
 public class ScalariformApplicationComponent implements Configurable, ApplicationComponent, PersistentStateComponent<ScalariformApplicationComponent> {
-    private boolean alignParameters = false;
-    private boolean alignArguments = false;
-    private boolean alignSingleLineCase = false;
+    private boolean alignParameters = true;
+    private boolean alignArguments = true;
+    private boolean alignSingleLineCase = true;
     private boolean compactControlReadability = false;
     private boolean compactStringConcatenation = false;
-    private boolean doubleIndentClassDeclaration = false;
-    private boolean formatXML = false;
-    private boolean indentPackageBlocks = true;
+    private boolean doubleIndentClassDeclaration = true;
+    private boolean formatXML = true;
+    private boolean indentPackageBlocks = false;
     private boolean indentWithTabs = false;
     private boolean multilineScalaDocCommentsStartOnFirstLine = false;
-    private boolean placeScalaDocAsteriskBeneathSecondAsterisk = false;
+    private boolean placeScalaDocAsteriskBeneathSecondAsterisk = true;
     private boolean preserveSpaceBeforeArguments = false;
     private boolean rewriteArrowSymbols = false;
     private boolean spaceBeforeColon = false;
     private boolean spaceInsideParenthesis = false;
     private boolean spacesWithinPatternBinders = true;
-    private Integer alignSingleLineCaseStatementsMaxArrowIndent = 40;
+    private Integer alignSingleLineCaseStatementsMaxArrowIndent = 30;
     private Integer indentSpaces = 2;
-    private boolean indentLocalDefs;
-    private boolean spaceInsideBrackets;
-    private boolean spacesAroundMultiImports = true;
+    private boolean indentLocalDefs = false;
+    private boolean spaceInsideBrackets = false;
+    private boolean spacesAroundMultiImports = false;
+    private boolean autoFormatOnSave = false;
 
     public ScalariformApplicationComponent() {
     }
@@ -206,6 +207,13 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
         this.spacesAroundMultiImports = spacesAroundMultiImports;
     }
 
+    public boolean isAutoFormatOnSave() {
+        return autoFormatOnSave;
+    }
+
+    public void setAutoFormatOnSave(final boolean autoFormatOnSave) {
+        this.autoFormatOnSave = autoFormatOnSave;
+    }
     // Configurable
     ScalariformConfigurationForm form = null;
 

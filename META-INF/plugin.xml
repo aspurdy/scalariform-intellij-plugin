@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mistyputt.intellij.ScalariformFormat</id>
     <name>Scalariform</name>
-    <version>0.1</version>
+    <version>0.1.1</version>
     <vendor email="" url="">Mistyputt</vendor>
 
     <description><![CDATA[
@@ -26,6 +26,9 @@
         <!-- Add your application components here -->
         <component>
             <implementation-class>com.thesamet.intellij.ScalariformApplicationComponent</implementation-class>
+        </component>
+        <component>
+            <implementation-class>com.thesamet.intellij.FormatOnSave</implementation-class>
         </component>
     </application-components>
 
