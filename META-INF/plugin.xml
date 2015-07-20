@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mistyputt.intellij.ScalariformFormat</id>
     <name>Scalariform</name>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <vendor email="" url="">Mistyputt</vendor>
 
     <description><![CDATA[
