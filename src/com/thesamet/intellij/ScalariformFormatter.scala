@@ -19,7 +19,7 @@ object ScalariformFormatter {
     optFileDoc.filter(_.isScala)
       .foreach {
         fileDoc =>
-          val source = fileDoc.document.getText()
+          val source = fileDoc.document.getText
           val formatted = ScalaFormatter.format(source, formattingPreferences = pref)
           if (source != formatted) {
             ApplicationManager.getApplication.runWriteAction(new Runnable {

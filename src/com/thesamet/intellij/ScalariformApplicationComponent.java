@@ -10,11 +10,12 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-/**
- * Created by nadavsr on 6/1/14.
- */
-@State(name = "ScalariformSettings", storages = {@Storage(id = "other", file = StoragePathMacros.APP_CONFIG + "/other.xml"
-)})
+@State(
+    name = "ScalariformSettings",
+    storages = {
+        @Storage(id = "other", file = StoragePathMacros.APP_CONFIG + "/other.xml")
+    }
+)
 public class ScalariformApplicationComponent implements Configurable, ApplicationComponent, PersistentStateComponent<ScalariformApplicationComponent> {
     private boolean alignParameters = true;
     private boolean alignArguments = true;
@@ -214,6 +215,7 @@ public class ScalariformApplicationComponent implements Configurable, Applicatio
     public void setAutoFormatOnSave(final boolean autoFormatOnSave) {
         this.autoFormatOnSave = autoFormatOnSave;
     }
+
     // Configurable
     ScalariformConfigurationForm form = null;
 

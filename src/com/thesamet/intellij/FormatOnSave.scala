@@ -32,14 +32,12 @@ class FormatOnSave extends ApplicationComponent {
 
   }
 
-  def initComponent {
+  def initComponent(): Unit = {
     connection = ApplicationManager.getApplication.getMessageBus.connect
     connection.subscribe(AppTopics.FILE_DOCUMENT_SYNC, new DocumentFormatter)
   }
 
-  def disposeComponent {
-    connection.disconnect
-  }
+  def disposeComponent(): Unit = connection.disconnect()
 
   def getComponentName: String = {
     getClass.getSimpleName

@@ -2,9 +2,6 @@ package com.thesamet.intellij;
 
 import javax.swing.*;
 
-/**
- * Created by nadavsr on 5/31/14.
- */
 public class ScalariformConfigurationForm {
     private JCheckBox alignParametersCheckBox;
     private JCheckBox alignArgumentsCheckBox;
@@ -78,11 +75,11 @@ public class ScalariformConfigurationForm {
         data.setSpacesWithinPatternBinders(spacesWithinPatternBindersCheckBox.isSelected());
         try {
             data.setIndentSpaces(Integer.parseInt(indentSpaces.getText()));
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ignored) {
         }
         try {
             data.setAlignSingleLineCaseStatementsMaxArrowIndent(Integer.parseInt(maxArrowIndent.getText()));
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ignored) {
         }
         data.setIndentLocalDefs(indentLocalDefsCheckBox.isSelected());
         data.setSpaceInsideBrackets(spaceInsideBracketsCheckBox.isSelected());
