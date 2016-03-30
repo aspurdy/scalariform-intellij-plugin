@@ -9,7 +9,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.util.messages.MessageBusConnection
 
 class FormatOnSave(project: Project) extends ProjectComponent {
-  import com.thesamet.intellij.ScalariformFormatter._
 
   private var connection: MessageBusConnection = null
 
@@ -32,13 +31,11 @@ class FormatOnSave(project: Project) extends ProjectComponent {
       val settings = ScalariformSettings.getInstance(project)
       if (settings.isAutoFormatOnSave) {
         CommandProcessor.getInstance().runUndoTransparentAction(new Runnable() {
-          override def run(): Unit = formatter.format(getCurrentFileDocument(document))
+          override def run(): Unit = for {
+            vfile <- Option(FileDocumentManager.getInstance().getFile(document))
+          } formatter.format(vfile)
         })
       }
     }
-
-    private def getCurrentFileDocument(document: Document): Option[FileDocument] = for {
-      vfile <- Option(FileDocumentManager.getInstance().getFile(document))
-    } yield FileDocument(vfile, document)
   }
 }

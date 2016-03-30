@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mistyputt.intellij.ScalariformFormat</id>
     <name>Scalariform</name>
-    <version>0.2</version>
+    <version>0.2.1</version>
     <vendor email="" url="">Mistyputt</vendor>
 
     <description><![CDATA[
@@ -9,7 +9,12 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      Initial version.
+      v0.2.1:
+        - Fixed compatibility with the upcoming IDEA EAP 145.258.11.
+        - Fixed undo doesn't work.
+        - Format all selected files/directory.
+
+      v0.1 - Initial version.
     ]]>
     </change-notes>
 
