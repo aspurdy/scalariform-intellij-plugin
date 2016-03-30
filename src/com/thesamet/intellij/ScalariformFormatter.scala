@@ -64,6 +64,7 @@ class ScalariformFormatter(project: Project) extends ProjectComponent {
     def formatInternal(vfiles: List[VirtualFile]): Unit = vfiles match {
       case f :: tail if f.getFileType.getName == "Scala" =>
         try {
+          println(s"formatting.. ${f.getName}")
           val document = fileDocManager.getDocument(f)
           val source = document.getText
           val formatted = ScalaFormatter.format(source, formattingPreferences = prefs)
@@ -79,10 +80,11 @@ class ScalariformFormatter(project: Project) extends ProjectComponent {
         }
         formatInternal(tail)
 
-      case f :: tail if f.isDirectory =>
-        formatInternal(f.getChildren.toList ::: tail)
+      case f :: tail if f.isDirectory => formatInternal(f.getChildren.toList ::: tail)
 
-      case _ => //ignored
+      case f :: tail                  => formatInternal(tail)
+
+      case _                          => //ignored
     }
     formatInternal(List(vfile))
   }

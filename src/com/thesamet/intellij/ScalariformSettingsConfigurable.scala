@@ -7,11 +7,11 @@ import com.intellij.openapi.project.Project
 import org.jetbrains.annotations.{Nls, Nullable}
 
 class ScalariformSettingsConfigurable(project: Project) extends Configurable {
-  private var myPanel                 = new ScalariformSettingsPanel(project)
+  private var myPanel = new ScalariformSettingsPanel(project)
   private var myComponent: JComponent = myPanel.getPanel
 
   @Nls
-  override def getDisplayName: String = "Scalariform";
+  override def getDisplayName: String = "Scalariform"
 
   @Nullable
   override def getHelpTopic: String = null
