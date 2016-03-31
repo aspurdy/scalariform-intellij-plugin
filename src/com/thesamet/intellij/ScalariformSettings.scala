@@ -44,7 +44,7 @@ class ScalariformSettings extends PersistentStateComponent[ScalariformSettings] 
   @BooleanBeanProperty var indentPackageBlocks: Boolean = false
   @BooleanBeanProperty var indentWithTabs: Boolean = false
   @BooleanBeanProperty var multilineScalaDocCommentsStartOnFirstLine: Boolean = false
-  @BooleanBeanProperty var placeScalaDocAsteriskBeneathSecondAsterisk: Boolean = true
+  @BooleanBeanProperty var placeScalaDocAsteriskBeneathSecondAsterisk: Boolean = false
   @BooleanBeanProperty var preserveSpaceBeforeArguments: Boolean = false
   @BooleanBeanProperty var rewriteArrowSymbols: Boolean = false
   @BooleanBeanProperty var spaceBeforeColon: Boolean = false
