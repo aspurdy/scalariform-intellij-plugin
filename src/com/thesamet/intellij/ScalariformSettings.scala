@@ -39,7 +39,7 @@ class ScalariformSettings extends PersistentStateComponent[ScalariformSettings] 
   @BooleanBeanProperty var alignSingleLineCase: Boolean = true
   @BooleanBeanProperty var compactControlReadability: Boolean = false
   @BooleanBeanProperty var compactStringConcatenation: Boolean = false
-  @BooleanBeanProperty var doubleIndentClassDeclaration: Boolean = true
+  @BooleanBeanProperty var doubleIndentClassDeclaration: Boolean = false
   @BooleanBeanProperty var formatXML: Boolean = true
   @BooleanBeanProperty var indentPackageBlocks: Boolean = false
   @BooleanBeanProperty var indentWithTabs: Boolean = false
