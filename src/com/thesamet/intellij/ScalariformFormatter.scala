@@ -62,9 +62,8 @@ class ScalariformFormatter(project: Project) extends ProjectComponent {
     lazy val prefs = formattingPreferences
     @tailrec
     def formatInternal(vfiles: List[VirtualFile]): Unit = vfiles match {
-      case f :: tail if f.getFileType.getName == "Scala" =>
+      case f :: tail if Seq("Scala", "SBT").contains(f.getFileType.getName) =>
         try {
-          println(s"formatting.. ${f.getName}")
           val document = fileDocManager.getDocument(f)
           val source = document.getText
           val formatted = ScalaFormatter.format(source, formattingPreferences = prefs)
