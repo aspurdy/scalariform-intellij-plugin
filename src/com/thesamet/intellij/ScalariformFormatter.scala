@@ -1,5 +1,6 @@
 package com.thesamet.intellij
 
+import com.google.common.html.HtmlEscapers
 import com.intellij.notification.{NotificationType, Notifications, Notification}
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.ProjectComponent
@@ -92,10 +93,12 @@ class ScalariformFormatter(project: Project) extends ProjectComponent {
                   val nl = source.indexOf('\n', offset)
                   if (nl > -1) nl else source.length - 1
                 }
-                val snippet = source.slice(start, end).replaceAll(" ", "\u00a0")
-                val cursor = ("\u00a0" * (offset - start)) + "^"
+                val htmlEscaper = HtmlEscapers.htmlEscaper
+                val snippet = htmlEscaper.escape(source.slice(start, end)).replaceAll(" ", "&nbsp;")
+                val cursor = ("&nbsp;" * (offset - start)) + "^"
+                val escapedTokenText = htmlEscaper.escape(tokenText)
 
-                s"${f.getPath}:$line: $msgPrefix $tokenType($tokenText)\n$snippet\n$cursor"
+                s"${f.getPath}:$line: $msgPrefix $tokenType($escapedTokenText)\n<pre>$snippet\n$cursor</pre>"
 
               case None => e.getMessage
             }
