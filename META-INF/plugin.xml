@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.mistyputt.intellij.ScalariformFormat</id>
     <name>Scalariform</name>
-    <version>0.2.2</version>
+    <version>0.2.3</version>
     <vendor email="" url="">Mistyputt</vendor>
 
     <description><![CDATA[
@@ -9,6 +9,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      v0.2.3:
+        - Improved format error notification.
+
       v0.2.2:
         - Fixed bug some files are missing.
 

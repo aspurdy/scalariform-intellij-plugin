@@ -9,9 +9,11 @@ import com.intellij.openapi.vfs.VirtualFile
 import org.jetbrains.annotations.NotNull
 
 import scala.annotation.tailrec
+import scala.util.matching.Regex.Groups
 import scalariform.formatter.ScalaFormatter
 import scalariform.formatter.preferences._
 import scalariform.formatter.preferences.AlignSingleLineCaseStatements.MaxArrowIndent
+import scalariform.lexer.Tokens
 import scalariform.parser.ScalaParserException
 
 object ScalariformFormatter {
@@ -63,19 +65,41 @@ class ScalariformFormatter(project: Project) extends ProjectComponent {
     @tailrec
     def formatInternal(vfiles: List[VirtualFile]): Unit = vfiles match {
       case f :: tail if Seq("Scala", "SBT").contains(f.getFileType.getName) =>
+        val document = fileDocManager.getDocument(f)
+        val source = document.getText
         try {
-          val document = fileDocManager.getDocument(f)
-          val source = document.getText
           val formatted = ScalaFormatter.format(source, formattingPreferences = prefs)
-          if (source != formatted) {
+          if (formatted != source) {
             ApplicationManager.getApplication.runWriteAction(new Runnable {
               override def run(): Unit = document.setText(formatted)
             })
           }
         } catch {
-          case e: ScalaParserException => Notifications.Bus.notify(new Notification(
-            "scalariform", "Scalariform - " + f.getPath, e.getMessage, NotificationType.INFORMATION
-          ))
+          case e: ScalaParserException =>
+            val TokenErrorMessagePattern = """(.+) Token\((.+)\)$""".r
+            val message = TokenErrorMessagePattern.findFirstMatchIn(e.getMessage) match {
+              case Some(Groups(msgPrefix, token)) =>
+                val (tokenType, tokenText, offset) = token.split(',').toList match {
+                  case typ :: _ :: _ :: o :: Nil if Tokens.COMMA.name == typ => (typ, ",", o.toInt)
+                  case typ :: text :: o :: _ :: Nil                          => (typ, text, o.toInt)
+                }
+                val line = 1 + source.take(offset).count(_ == '\n')
+                val start = {
+                  val nl = source.lastIndexOf('\n', offset)
+                  if (nl > -1) nl + 1 else 0
+                }
+                val end = {
+                  val nl = source.indexOf('\n', offset)
+                  if (nl > -1) nl else source.length - 1
+                }
+                val snippet = source.slice(start, end).replaceAll(" ", "\u00a0")
+                val cursor = ("\u00a0" * (offset - start)) + "^"
+
+                s"${f.getPath}:$line: $msgPrefix $tokenType($tokenText)\n$snippet\n$cursor"
+
+              case None => e.getMessage
+            }
+            Notifications.Bus.notify(new Notification("scalariform", "Scalariform", message, NotificationType.WARNING))
         }
         formatInternal(tail)
 
